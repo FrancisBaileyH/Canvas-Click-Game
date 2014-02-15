@@ -154,8 +154,8 @@ $( document ).ready( function()
     
     
     /*
-     * Set obstacles randomly
-     * on top or on bottom
+     * Create a new obstacle and set it on top
+     * or bottom
     */ 
     function setObstacle( id )
     {
@@ -167,12 +167,10 @@ $( document ).ready( function()
         // Randomly decided whether to draw obstacle on top or bottom
         var top = getRandInt( 0, 20 ) % 2 === 0 ? true : false;
             
-        /*
-         * Height doesn't matter if next obs and last obs 
-         * are in same position
-        */  
+        // Height doesn't matter if next obs and last obs 
+        // are in same position
         if ( ( lastObs.y === 0 && top === true )
-          || ( lastObs.y !== 0 && top === false ) )
+           || ( lastObs.y !== 0 && top === false ) )
         {
             obsHeight = getRandInt( 100, MAX_OBS_HEIGHT );
         }
@@ -214,14 +212,14 @@ $( document ).ready( function()
                 
         
     /*
-     * Draw Obstacles from obsState
+     * Draw and move obstacles from obsState
     */ 
     function renderObstacles( speed )
     {
         for ( var a = 0; a < obsState.length; a++ )
         {
             obsState[a].x -= speed;
-            draw( obsState[a].x, obsState[a].y, obsState[a].h, obsState[a].w );
+            draw( obsState[a].x, obsState[a].y, obsState[a].h, obsState[a].w, 'rgb(0,0,0)' );
             findNearestObs( a );
             setState( obsState, obsState[a].x, obsState[a].y, obsState[a].h, obsState[a].w, a );
         }
@@ -255,7 +253,7 @@ $( document ).ready( function()
     function renderPlayer()
     {
         movePlayerDown();
-        draw( plyrState[PLYR_ID].x, plyrState[PLYR_ID].y, plyrState[PLYR_ID].h, plyrState[PLYR_ID].w );
+        draw( plyrState[PLYR_ID].x, plyrState[PLYR_ID].y, plyrState[PLYR_ID].h, plyrState[PLYR_ID].w, 'rgb(0,0,0)' );
     } 
     
     
@@ -314,9 +312,9 @@ $( document ).ready( function()
     /*=====================================================*/
     
                 
-    function draw( x_coord, y_coord, height, width )
+    function draw( x_coord, y_coord, height, width, color )
     {
-        ctx.fillStyle = 'rgb( 0, 0, 0 )';
+        ctx.fillStyle = color;
         ctx.fillRect( x_coord , y_coord, width, height );
     }
     
