@@ -6,5 +6,7 @@ I'm not javascript expert so this was just a chance to play around and learn
 some neat features.
 
 
-The game looks like so: 
+Screenshot
+=====================================================
+
 <img src="http://i.imgur.com/vSZDJmX.png" />
